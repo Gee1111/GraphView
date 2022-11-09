@@ -74,6 +74,10 @@ public class GridLabelRenderer {
          * the alignment of the labels on the right side
          */
         public Paint.Align verticalLabelsSecondScaleAlign;
+        /**
+         * the alignment of the horizontal labels bottom
+         */
+        public Paint.Align horizontalLabelsAlign;
 
         /**
          * the color of the vertical labels
@@ -400,6 +404,7 @@ public class GridLabelRenderer {
         mStyles.labelsSpace = (int) mStyles.textSize/5;
 
         mStyles.verticalLabelsAlign = Paint.Align.RIGHT;
+        mStyles.horizontalLabelsAlign = Paint.Align.CENTER;
         mStyles.verticalLabelsSecondScaleAlign = Paint.Align.LEFT;
         mStyles.highlightZeroLines = true;
 
@@ -508,6 +513,14 @@ public class GridLabelRenderer {
      */
     public Paint.Align getVerticalLabelsAlign() {
         return mStyles.verticalLabelsAlign;
+    }
+    
+        /**
+     * @return  the alignment of the text of the
+     *          vertical labels
+     */
+    public Paint.Align getHorizontalLabelsAlign() {
+        return mStyles.horizontalLabelsAlign;
     }
 
     /**
@@ -939,7 +952,7 @@ public class GridLabelRenderer {
         }
 
         // it can happen that we need to add some more labels to fill the complete screen
-        numHorizontalLabels = (int) ((mGraphView.getViewport().mCurrentViewport.width() / exactSteps)) + 1;
+        numHorizontalLabels = (int) ((mGraphView.getViewport().mCurrentViewport.width() / exactSteps)) + 2;
 
         if (mStepsHorizontal != null) {
             mStepsHorizontal.clear();
@@ -1223,11 +1236,11 @@ public class GridLabelRenderer {
                         mPaintLabel.setTextAlign((Paint.Align.LEFT));
                     }
                 } else {
-                    mPaintLabel.setTextAlign(Paint.Align.CENTER);
-                    if (i == mStepsHorizontal.size() - 1)
+                    mPaintLabel.setTextAlign(getHorizontalLabelsAlign());
+                    /*if (i == mStepsHorizontal.size() - 1)
                         mPaintLabel.setTextAlign(Paint.Align.RIGHT);
                     if (i == 0)
-                        mPaintLabel.setTextAlign(Paint.Align.LEFT);
+                        mPaintLabel.setTextAlign(Paint.Align.LEFT);*/
                 }
 
                 // multiline labels
@@ -1515,6 +1528,13 @@ public class GridLabelRenderer {
      */
     public void setVerticalLabelsAlign(Paint.Align verticalLabelsAlign) {
         mStyles.verticalLabelsAlign = verticalLabelsAlign;
+    }
+    
+        /**
+     * @param horizontalLabelsAlign the alignment of the vertical labels
+     */
+    public void setHorizontalLabelsAlign(Paint.Align horizontalLabelsAlign) {
+        mStyles.horizontalLabelsAlign = horizontalLabelsAlign;
     }
 
     /**
