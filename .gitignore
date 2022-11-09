@@ -96,4 +96,4 @@ $RECYCLE.BIN/
 build/
 .gradletasknamecache
 gradle.properties
-
+libs/jars/graphViewM.jar
